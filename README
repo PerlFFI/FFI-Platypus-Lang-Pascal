@@ -1,0 +1,92 @@
+NAME
+
+    FFI::Platypus::Lang::Pascal - Documentation and tools for using
+    Platypus with the Free Pascal programming language
+
+SYNOPSIS
+
+    # TODO
+
+DESCRIPTION
+
+    This modules provides native types and demangling for the Free Pascal
+    Programming language when used with FFI::Platypus.
+
+CAVEATS
+
+    I've been experimenting with Free Pascal 2.6.0 while working on this
+    module.
+
+ name mangling
+
+    TODO
+
+METHODS
+
+    Generally you will not use this class directly, instead interacting
+    with the FFI::Platypus instance. However, the public methods used by
+    Platypus are documented here.
+
+ native_type_map
+
+     my $hashref = FFI::Platypus::Lang::Pascal->native_type_map;
+
+    This returns a hash reference containing the native aliases for the
+    Free Pascal programming languages. That is the keys are native C++
+    types and the values are libffi native types.
+
+    Types are in camel case. For example use ShortInt, not Shortint or
+    SHORTINT.
+
+ mangler
+
+     my $mangler = FFI::Platypus::Lang::Pascal->mangler($ffi->libs);
+     # prints ADD_ADD$SMALLINT$SMALLINT$$SMALLINT
+     print $mangler->("add(smallint,smallint):smallint");
+
+    Returns a subroutine reference that will "mangle" C++ names.
+
+EXAMPLES
+
+    See the above "SYNOPSIS" or the examples directory that came with this
+    distribution.
+
+SUPPORT
+
+    If something does not work as advertised, or the way that you think it
+    should, or if you have a feature request, please open an issue on this
+    project's GitHub issue tracker:
+
+    https://github.com/plicease/FFI-Platypus-Lang-Pascal/issues
+
+CONTRIBUTING
+
+    If you have implemented a new feature or fixed a bug then you may make
+    a pull reequest on this project's GitHub repository:
+
+    https://github.com/plicease/FFI-Platypus-Lang-Pascal/issues
+
+    Caution: if you do this too frequently I may nominate you as the new
+    maintainer. Extreme caution: if you like that sort of thing.
+
+SEE ALSO
+
+    FFI::Platypus
+
+      The Core Platypus documentation.
+
+    Module::Build::FFI::Pascal
+
+      Bundle Free Pascal with your FFI / Perl extension.
+
+AUTHOR
+
+    Graham Ollis <plicease@cpan.org>
+
+COPYRIGHT AND LICENSE
+
+    This software is copyright (c) 2015 by Graham Ollis.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
