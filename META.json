@@ -23,6 +23,7 @@
          "requires" : {
             "ExtUtils::CBuilder" : "0",
             "File::Which" : "0",
+            "File::chdir" : "0",
             "Module::Build" : "0.38",
             "Module::Build::FFI" : "0.18"
          }
@@ -31,6 +32,7 @@
          "requires" : {
             "ExtUtils::CBuilder" : "0",
             "File::Which" : "0",
+            "File::chdir" : "0",
             "Module::Build" : "0.38",
             "Module::Build::FFI" : "0.18"
          }
@@ -39,6 +41,7 @@
          "requires" : {
             "FFI::Platypus" : "0.18",
             "File::Which" : "0",
+            "File::chdir" : "0",
             "Parse::nm" : "0",
             "perl" : "5.008001"
          }
@@ -53,6 +56,9 @@
       "FFI::Platypus::Lang::Pascal" : {
          "file" : "lib/FFI/Platypus/Lang/Pascal.pm",
          "version" : "0.01"
+      },
+      "Module::Build::FFI::Pascal" : {
+         "file" : "lib/Module/Build/FFI/Pascal.pm"
       }
    },
    "release_status" : "stable",
