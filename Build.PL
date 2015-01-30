@@ -61,6 +61,12 @@ my $builder = My::ModuleBuild->new(
 $builder->add_to_cleanup(
   '*.bak',
   '*.ppu',
+  'examples/*.o',
+  'examples/*.so',
+  'examples/*.ppu',
+  'libtest/*.o',
+  'libtest/*.so',
+  'libtest/*.ppu',
   'FFI-Platypus-Lang-Pascal-*',
 );
 
