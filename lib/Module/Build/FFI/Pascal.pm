@@ -107,12 +107,20 @@ sub ffi_build_dynamic_lib
     my $fpc = which('fpc');
     my $ppumove = which('ppumove');
 
+    my @compiler_flags;
+    my @linker_flags;
+
+    # TODO: OSX should not do this for 32bit Perl
+    # TODO: OSX make a universal binary if possible?
+    push @compiler_flags, '-Px86_64' if $^O eq 'darwin';
+
     my @ppu;
 
     foreach my $src (@sources)
     {
       my @cmd = (
         $fpc,
+        @compiler_flags,
         @{ $self->ffi_pascal_extra_compiler_flags },
         $src
       );
@@ -133,13 +141,29 @@ sub ffi_build_dynamic_lib
       push @ppu, $ppu;
     }
 
-    my @cmd = (
-      $ppumove,
-      @{ $self->ffi_pascal_extra_linker_flags },
-      -o => 'mbFFIPlatypusPascal',
-      -e => 'ppl',
-      @ppu,
-    );
+    my @cmd;
+
+    if($^O eq 'darwin')
+    {
+      my @obj = map { s/\.ppu/\.o/; $_ } @ppu;
+      @cmd = (
+        'ld',
+        $Config{dlext} eq 'bundle' ? '-bundle' : '-dylib',
+        '-o' => "libmbFFIPlatypusPascal.$Config{dlext}",
+        @obj,
+      );
+    }
+    else
+    {
+      @cmd = (
+        $ppumove,
+        @linker_flags,
+        @{ $self->ffi_pascal_extra_linker_flags },
+        -o => 'mbFFIPlatypusPascal',
+        -e => 'ppl',
+        @ppu,
+      );
+    }
 
     print "@cmd\n";
     system @cmd;

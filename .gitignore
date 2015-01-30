@@ -11,3 +11,5 @@
 *.so
 *.ppu
 *.ppl
+*.bundle
+*.dylib
