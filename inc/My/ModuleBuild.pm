@@ -2,7 +2,7 @@ package My::ModuleBuild;
 
 use strict;
 use warnings;
-use base qw( Module::Build::FFI );
+use base qw( Module::Build::FFI::Pascal );
 
 sub ACTION_dist
 {

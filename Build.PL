@@ -31,12 +31,14 @@ my $builder = My::ModuleBuild->new(
     'ExtUtils::CBuilder' => 0,
     'Module::Build::FFI' => 0.18,
     'File::Which' => 0,
+    'File::chdir' => 0,
   },
   build_requires => {
     'Module::Build'      => 0.38,
     'ExtUtils::CBuilder' => 0,
     'Module::Build::FFI' => 0.18,
     'File::Which' => 0,
+    'File::chdir' => 0,
   },
   test_requires => {
     'FFI::CheckLib' => 0,
@@ -46,6 +48,7 @@ my $builder = My::ModuleBuild->new(
     'FFI::Platypus' => '0.18',
     'Parse::nm'     => 0,
     'File::Which'   => 0,
+    'File::chdir'   => 0,
   },
   meta_merge => {
     resources  => {
@@ -64,9 +67,11 @@ $builder->add_to_cleanup(
   'examples/*.o',
   'examples/*.so',
   'examples/*.ppu',
+  'examples/*.ppl',
   'libtest/*.o',
   'libtest/*.so',
   'libtest/*.ppu',
+  'libtest/*.ppl',
   'FFI-Platypus-Lang-Pascal-*',
 );
 
