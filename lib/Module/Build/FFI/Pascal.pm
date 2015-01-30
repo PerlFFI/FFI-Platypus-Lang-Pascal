@@ -111,7 +111,8 @@ sub ffi_build_dynamic_lib
     my @linker_flags;
 
     # TODO: OSX not sure if checking ptrsize will actually work
-    #       arch -arch i386 /usr/bin/perl -V:ptrsize
+    #       % arch -arch i386 /usr/bin/perl -V:ptrsize
+    #       ptrsize='8';
     #       but the system perl is a universal binary
     #       or maybe I am using arch wrong.  who knows.
     # TODO: OSX make a universal binary if possible?
