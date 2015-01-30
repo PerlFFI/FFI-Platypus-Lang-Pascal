@@ -2,6 +2,7 @@ package FFI::Platypus::Lang::Pascal;
 
 use strict;
 use warnings;
+use Carp qw( croak );
 use FFI::Platypus;
 
 our $VERSION = '0.01';
@@ -93,10 +94,72 @@ sub mangler
 {
   my($class, @libs) = @_;
   
-  # TODO
+  my %mangle;
+  
+  foreach my $libpath (@libs)
+  {
+    require Parse::nm;
+    Parse::nm->run(
+      files => $libpath,
+      filters => [ {
+        action => sub {
+          my $c_symbol = $_[0];
+          $c_symbol =~ s{^_}{};
+          return if $c_symbol =~ /^THREADVARLIST_/;
+          return unless $c_symbol =~ /^[A-Z0-9_]+(\$[A-Z0-9_]+)*(\$\$[A-Z0-9_]+)?$/;
+          print "c_symbol = $c_symbol\n";
+          my $symbol = $c_symbol;
+          my $ret = '';
+          $ret = $1 if $symbol =~ s/\$\$([A-Z_]+)$//;
+          my($name, @args) = split /\$/, $symbol;
+          $symbol = "${name}(" . join(',', @args) . ')';
+          $symbol .= ":$ret" if $ret;
+          push @{ $mangle{$name} }, [ $symbol, $c_symbol ];
+        },
+      } ],
+    );
+  }
+  
+  use YAML ();
+  print YAML::Dump(\%mangle);
   
   sub {
-    $_[0];
+    my $symbol = $_[0];
+
+    if($symbol =~ /^(.+)\((.*)\)$/)
+    {
+      my $name = uc $1;
+      my @args = map { uc $_ } split ',', $2;
+      $name =~ s{\.}{_};
+      return join '$', $name, @args;
+    }
+    elsif($symbol =~ /^(.+)\((.*)\):(.*)$/)
+    {
+      my $name = uc $1;
+      my @args = map { uc $_ } split ',', $2;
+      my $ret = uc $3;
+      $name =~ s{\.}{_};
+      return join '$', $name, @args, "\$$ret";
+    }
+    
+    my $name = uc $symbol;
+    $name =~ s/\./_/;
+
+    if($mangle{$name})
+    {
+      if(@{ $mangle{$name} } == 1)
+      {
+        return $mangle{$name}->[0]->[1];
+      }
+      else
+      {
+        croak(
+          "$symbol is ambiguous.  Please specify one of: " .
+          join(', ', map { $_->[0] } @{ $mangle{$name} })
+        );
+      }
+    }
+    $symbol;
   };
 }
 

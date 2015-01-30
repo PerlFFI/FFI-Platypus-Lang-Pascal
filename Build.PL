@@ -39,6 +39,7 @@ my $builder = My::ModuleBuild->new(
     'Module::Build::FFI' => 0.18,
     'File::Which' => 0,
     'File::chdir' => 0,
+    'Parse::nm'   => 0,
   },
   test_requires => {
     'FFI::CheckLib' => 0,
@@ -49,6 +50,7 @@ my $builder = My::ModuleBuild->new(
     'Parse::nm'     => 0,
     'File::Which'   => 0,
     'File::chdir'   => 0,
+    'Parse::nm'     => 0,
   },
   meta_merge => {
     resources  => {
