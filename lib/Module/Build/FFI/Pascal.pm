@@ -110,9 +110,13 @@ sub ffi_build_dynamic_lib
     my @compiler_flags;
     my @linker_flags;
 
-    # TODO: OSX should not do this for 32bit Perl
+    # TODO: OSX not sure if checking ptrsize will actually work
+    #       arch -arch i386 /usr/bin/perl -V:ptrsize
+    #       but the system perl is a universal binary
+    #       or maybe I am using arch wrong.  who knows.
     # TODO: OSX make a universal binary if possible?
-    push @compiler_flags, '-Px86_64' if $^O eq 'darwin';
+    # Fortunately most people are probably using OS X 64 bit intel by now anyway
+    push @compiler_flags, '-Px86_64' if $^O eq 'darwin' && $Config{ptrsize} == 8;
 
     my @ppu;
 
