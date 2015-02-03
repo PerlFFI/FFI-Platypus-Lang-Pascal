@@ -14,12 +14,100 @@ the Free Pascal programming language
 
 =head1 SYNOPSIS
 
-# TODO
+Free Pascal:
+
+ { compile and link with: fpc mylib.pas }
+ 
+ Library MyLib;
+ 
+ Function Add(A: Integer; B: Integer): Integer; Cdecl;
+ Begin
+   Add := A + B;
+ End;
+ 
+ Exports
+   Add;
+ 
+ End.
+
+Perl:
+
+ use FFI::Platypus;
+ 
+ my $ffi = FFI::Platypus->new;
+ $ffi->lang('Pascal');
+ $ffi->lib('./libmylib.so');
+ 
+ $ffi->attach(
+   Add => ['Integer','Integer'] => 'Integer'
+ );
+ 
+ print Add(1,2), "\n";
 
 =head1 DESCRIPTION
 
 This modules provides native types and demangling for the Free Pascal
 Programming language when used with L<FFI::Platypus>.
+
+This module provides these types (case sensitive):
+
+=over 4
+
+=item Byte
+
+=item ShortInt
+
+=item SmallInt
+
+=item Word
+
+=item Integer
+
+This is an alias for SmallInt (which is appropriate for Free Pascal's default mode)
+
+=item Cardinal
+
+=item LongInt
+
+=item LongWord
+
+=item Int64
+
+=item QWord
+
+=item Boolean
+
+=item ByteBool
+
+=item WordBool
+
+=item LongBool
+
+=item Single
+
+=item Double
+
+=back
+
+The following types are not (yet) supported:
+
+=over 4
+
+=item Extended
+
+=item Comp
+
+=item Currency
+
+=item ShortString
+
+=back
+
+This module also has some support for demangled functions and overloading, if
+you are using a dynamic library constructed from units via C<ppumove>.
+
+You may also use L<Module::Build::FFI::Pascal> to bundle Free Pascal code with
+your distribution.
 
 =head1 CAVEATS
 
@@ -27,7 +115,65 @@ I've been experimenting with Free Pascal 2.6.0 while working on this module.
 
 =head2 name mangling
 
-TODO
+If you compile one or more Pascal Units and link them using C<ppumove>,
+they symbols in the resulting dynamic library will include mangled Pascal
+names.  This module has at least some support for such names.
+
+For example, suppose you had this Pascal Unit:
+
+ Unit Add;
+ 
+ Interface
+ 
+ Function Add( A: SmallInt; B: SmallInt) : SmallInt; Cdecl;
+ Function Add( A: Real;    B: Real)      : Real; Cdecl;
+ 
+ Implementation
+ 
+ Function Add( A: SmallInt; B: SmallInt) : SmallInt; Cdecl;
+ Begin
+   Add := A + B;
+ End;
+ 
+ Function Add( A: real; B: real) : real; Cdecl;
+ Begin
+   Add := A + B;
+ End;
+ 
+ End.
+
+On Linux, you could compile and link this into a shared object with these
+commands:
+
+ fpc add.pas
+ gcc -o add.so -shared add.o
+
+And you could then use it from Perl:
+
+ use FFI::Platypus;
+ 
+ my $ffi = FFI::Platypus->new;
+ $ffi->lang('Pascal');
+ $ffi->lib('./add.so');
+ 
+ $ffi->attach(
+   ['Add.Add(SmallInt,SmallInt):SmallInt' => 'Add'] => ['SmallInt','SmallInt'] => 'SmallInt'
+ );
+ 
+ print Add(1,2), "\n";
+
+When attaching the function you have to specify the argument and return types
+because the C<Add> function is overloaded and is ambiguous without it.  If there
+were just one Add function, then you could attach it like this:
+
+ $ffi->attach('Add' => ['SmallInt','SmallInt'] => 'SmallInt');
+
+The downside to using a shared library constructed from Pascal Units in this
+way is that the resulting dynamic library does not include the Pascal
+standard library so very simple capabilities such as IO and ShortString
+are not available.  It is recommended instead to use a Pascal Library
+(possibly linked with one or more Pascal Units), as inthe L</SYNOPSIS>
+at the top.
 
 =head1 METHODS
 

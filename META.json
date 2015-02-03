@@ -25,7 +25,8 @@
             "File::Which" : "0",
             "File::chdir" : "0",
             "Module::Build" : "0.38",
-            "Module::Build::FFI" : "0.18"
+            "Module::Build::FFI" : "0.18",
+            "Parse::nm" : "0"
          }
       },
       "configure" : {

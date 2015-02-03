@@ -9,6 +9,8 @@ use File::chdir;
 use File::Copy qw( move );
 use base qw( Module::Build::FFI );
 
+our $VERSION = '0.01';
+
 =head1 NAME
 
 Module::Build::FFI::Pascal - Build Perl extensions in Free Pascal with FFI

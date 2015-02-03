@@ -9,6 +9,7 @@ build_requires:
   File::chdir: '0'
   Module::Build: '0.38'
   Module::Build::FFI: '0.18'
+  Parse::nm: '0'
 configure_requires:
   ExtUtils::CBuilder: '0'
   File::Which: '0'
