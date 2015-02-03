@@ -39,18 +39,16 @@ my $builder = My::ModuleBuild->new(
     'Module::Build::FFI' => 0.18,
     'File::Which' => 0,
     'File::chdir' => 0,
-    'Parse::nm'   => 0,
   },
   test_requires => {
     'FFI::CheckLib' => 0,
   },
   requires => {
-    'perl',         => '5.008001',
-    'FFI::Platypus' => '0.18',
-    'Parse::nm'     => 0,
-    'File::Which'   => 0,
-    'File::chdir'   => 0,
-    'Parse::nm'     => 0,
+    'perl',               => '5.008001',
+    'FFI::Platypus'       => '0.18',
+    'File::Which'         => 0,
+    'File::chdir'         => 0,
+    'FFI::ExtractSymbols' => 0,
   },
   meta_merge => {
     resources  => {

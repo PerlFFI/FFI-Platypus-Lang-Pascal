@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Carp qw( croak );
 use FFI::Platypus;
+use FFI::ExtractSymbols;
 
 our $VERSION = '0.01';
 
@@ -244,24 +245,19 @@ sub mangler
   
   foreach my $libpath (@libs)
   {
-    require Parse::nm;
-    Parse::nm->run(
-      files => $libpath,
-      filters => [ {
-        action => sub {
-          my $c_symbol = $_[0];
-          $c_symbol =~ s{^_}{};
-          return if $c_symbol =~ /^THREADVARLIST_/;
-          return unless $c_symbol =~ /^[A-Z0-9_]+(\$[A-Z0-9_]+)*(\$\$[A-Z0-9_]+)?$/;
-          my $symbol = $c_symbol;
-          my $ret = '';
-          $ret = $1 if $symbol =~ s/\$\$([A-Z_]+)$//;
-          my($name, @args) = split /\$/, $symbol;
-          $symbol = "${name}(" . join(',', @args) . ')';
-          $symbol .= ":$ret" if $ret;
-          push @{ $mangle{$name} }, [ $symbol, $c_symbol ];
-        },
-      } ],
+    extract_symbols($libpath,
+      export => sub {
+        my($symbol1, $symbol2) = @_;
+        return if $symbol1 =~ /^THREADVARLIST_/;
+        return unless $symbol1 =~ /^[A-Z0-9_]+(\$[A-Z0-9_]+)*(\$\$[A-Z0-9_]+)?$/;
+        my $symbol = $symbol1;
+        my $ret = '';
+        $ret = $1 if $symbol =~ s/\$\$([A-Z_]+)$//;
+        my($name, @args) = split /\$/, $symbol;
+        $symbol = "${name}(" . join(',', @args) . ')';
+        $symbol .= ":$ret" if $ret;
+        push @{ $mangle{$name} }, [ $symbol, $symbol1 ];
+      },
     );
   }
 
