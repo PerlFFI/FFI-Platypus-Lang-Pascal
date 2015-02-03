@@ -1,4 +1,8 @@
 Revision history for Perl module FFI::Platypus::Lang::CPP
 
+0.02  Feb 3, 2015
+  - Fix for OS X and its addition to multiple extensions for dynamic libraries
+    See https://github.com/plicease/FFI-Platypus/issues/29
+
 0.01  Feb 2, 2015
   - Initial release
