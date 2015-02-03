@@ -29,14 +29,14 @@ my $builder = My::ModuleBuild->new(
   configure_requires => {
     'Module::Build'      => 0.38,
     'ExtUtils::CBuilder' => 0,
-    'Module::Build::FFI' => 0.18,
+    'Module::Build::FFI' => 0.19,
     'File::Which' => 0,
     'File::chdir' => 0,
   },
   build_requires => {
     'Module::Build'      => 0.38,
     'ExtUtils::CBuilder' => 0,
-    'Module::Build::FFI' => 0.18,
+    'Module::Build::FFI' => 0.19,
     'File::Which' => 0,
     'File::chdir' => 0,
   },
@@ -45,7 +45,7 @@ my $builder = My::ModuleBuild->new(
   },
   requires => {
     'perl',               => '5.008001',
-    'FFI::Platypus'       => '0.18',
+    'FFI::Platypus'       => '0.19',
     'File::Which'         => 0,
     'File::chdir'         => 0,
     'FFI::ExtractSymbols' => 0,

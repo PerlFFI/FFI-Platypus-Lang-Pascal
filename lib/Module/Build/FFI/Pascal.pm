@@ -110,7 +110,6 @@ sub ffi_build_dynamic_lib
     
   $src_dir = $src_dir->[0];
   my $lib;
-  $DB::single = 1;
   my %lib = map { $_ => 1 } @{ $self->ffi_pascal_lib };
 
   do {
@@ -182,7 +181,7 @@ sub ffi_build_dynamic_lib
       print "@cmd\n";
       system @cmd;
       exit 2 if $?;
-      my @so = bsd_glob("*.$Config{dlext}");
+      my @so = map { bsd_glob("*.$_") } Module::Build::FFI->ffi_dlext;
       die "multiple dylibs in $CWD" if @so > 1;
       die "no dylib in $CWD" if @so < 1;
     }
@@ -220,7 +219,7 @@ sub ffi_build_dynamic_lib
   
   print "cd $CWD\n";
   
-  my($from) = bsd_glob("$src_dir/*.$Config{dlext}");
+  my($from) = map { bsd_glob("$src_dir/*.$_") } Module::Build::FFI->ffi_dlext;
   
   unless(defined $from)
   {
@@ -231,13 +230,22 @@ sub ffi_build_dynamic_lib
   print "chmod 0755 $from\n";
   chmod 0755, $from;
   
-  my $dll = File::Spec->catfile($target_dir, "$name.$Config{dlext}");
+  my $ext = $Config{dlext};
+  foreach my $try (Module::Build::FFI->ffi_dlext)
+  {
+    $ext = $1 if $from =~ /\.($try)/;
+  }
   
-  print "mv $from $dll\n";
-  move($from => $dll) || do {
-    print "error copying file $!";
-    exit 2;
-  };
+  my $dll = File::Spec->catfile($target_dir, "$name.$ext");
+
+  if($from ne $dll)
+  {
+    print "mv $from $dll\n";
+    move($from => $dll) || do {
+      print "error copying file $!";
+      exit 2;
+    };
+  }
   
   $dll;
 }

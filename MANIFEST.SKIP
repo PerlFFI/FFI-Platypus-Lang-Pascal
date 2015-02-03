@@ -84,5 +84,6 @@
 \.so$
 \.dll$
 \.bundle$
+\.dylib$
 \.ppu$
 \.ppl$
