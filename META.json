@@ -25,8 +25,7 @@
             "File::Which" : "0",
             "File::chdir" : "0",
             "Module::Build" : "0.38",
-            "Module::Build::FFI" : "0.18",
-            "Parse::nm" : "0"
+            "Module::Build::FFI" : "0.18"
          }
       },
       "configure" : {
@@ -40,10 +39,10 @@
       },
       "runtime" : {
          "requires" : {
+            "FFI::ExtractSymbols" : "0",
             "FFI::Platypus" : "0.18",
             "File::Which" : "0",
             "File::chdir" : "0",
-            "Parse::nm" : "0",
             "perl" : "5.008001"
          }
       },
@@ -59,7 +58,8 @@
          "version" : "0.01"
       },
       "Module::Build::FFI::Pascal" : {
-         "file" : "lib/Module/Build/FFI/Pascal.pm"
+         "file" : "lib/Module/Build/FFI/Pascal.pm",
+         "version" : "0.01"
       }
    },
    "release_status" : "stable",

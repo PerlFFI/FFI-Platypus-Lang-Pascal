@@ -9,7 +9,6 @@ build_requires:
   File::chdir: '0'
   Module::Build: '0.38'
   Module::Build::FFI: '0.18'
-  Parse::nm: '0'
 configure_requires:
   ExtUtils::CBuilder: '0'
   File::Which: '0'
@@ -32,11 +31,12 @@ provides:
     version: '0.01'
   Module::Build::FFI::Pascal:
     file: lib/Module/Build/FFI/Pascal.pm
+    version: '0.01'
 requires:
+  FFI::ExtractSymbols: '0'
   FFI::Platypus: '0.18'
   File::Which: '0'
   File::chdir: '0'
-  Parse::nm: '0'
   perl: '5.008001'
 resources:
   bugtracker: http://github.com/plicease/FFI-Platypus-Lang-Pascal/issues
