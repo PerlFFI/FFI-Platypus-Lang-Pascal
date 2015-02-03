@@ -7,7 +7,7 @@ $ffi->lang('Pascal');
 $ffi->lib('./add.so');
 
 $ffi->attach(
-  ['ADD_ADD$SMALLINT$SMALLINT$$SMALLINT' => 'add'] => ['Integer','Integer'] => 'Integer'
+  ['Add.Add(SmallInt,SmallInt):SmallInt' => 'Add'] => ['Integer','Integer'] => 'Integer'
 );
 
-print add(1,2), "\n";
+print Add(1,2), "\n";

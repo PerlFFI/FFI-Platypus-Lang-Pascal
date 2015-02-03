@@ -28,6 +28,10 @@ L<Module::Build::FFI>
 
 =over 4
 
+=item ffi_pascal_lib
+
+Name of Pascal libraries.  Default is ['ffi.pas','test.pas']
+
 =item ffi_pascal_extra_compiler_flags
 
 Extra compiler flags to be passed to C<fpc>.
@@ -50,6 +54,10 @@ __PACKAGE__->add_property( ffi_pascal_extra_compiler_flags =>
 
 __PACKAGE__->add_property( ffi_pascal_extra_linker_flags =>
   default => [],
+);
+
+__PACKAGE__->add_property( ffi_pascal_lib =>
+  default => ['ffi.pas','test.pas'],
 );
 
 =head1 BASE CLASS
@@ -95,6 +103,14 @@ sub ffi_build_dynamic_lib
 {
   my($self, $src_dir, $name, $target_dir) = @_;
 
+  die "multiple directories not supported by ", __PACKAGE__
+    if @$src_dir > 1;
+    
+  $src_dir = $src_dir->[0];
+  my $lib;
+  $DB::single = 1;
+  my %lib = map { $_ => 1 } @{ $self->ffi_pascal_lib };
+
   do {
     local $CWD = $src_dir;
     print "cd $CWD\n";
@@ -123,6 +139,13 @@ sub ffi_build_dynamic_lib
 
     foreach my $src (@sources)
     {
+      if($lib{$src})
+      {
+        die "Two or more libraries in $CWD" if defined $lib;
+        $lib = $src;
+        next;
+      }
+    
       my @cmd = (
         $fpc,
         @compiler_flags,
@@ -146,38 +169,56 @@ sub ffi_build_dynamic_lib
       push @ppu, $ppu;
     }
 
-    my @cmd;
-
-    if($^O eq 'darwin')
+    if($lib)
     {
-      my @obj = map { s/\.ppu/\.o/; $_ } @ppu;
-      @cmd = (
-        'ld',
-        $Config{dlext} eq 'bundle' ? '-bundle' : '-dylib',
-        '-o' => "libmbFFIPlatypusPascal.$Config{dlext}",
-        @obj,
+      my @cmd = (
+        $fpc,
+        @compiler_flags,
+        @{ $self->ffi_pascal_extra_compiler_flags },
+        $lib,
       );
+      print "@cmd\n";
+      system @cmd;
+      exit 2 if $?;
+      my @so = bsd_glob("*.$Config{dlext}");
+      die "multiple dylibs in $CWD" if @so > 1;
+      die "no dylib in $CWD" if @so < 1;
     }
     else
     {
-      @cmd = (
-        $ppumove,
-        @linker_flags,
-        @{ $self->ffi_pascal_extra_linker_flags },
-        -o => 'mbFFIPlatypusPascal',
-        -e => 'ppl',
-        @ppu,
-      );
+      my @cmd;
+
+      if($^O eq 'darwin')
+      {
+        my @obj = map { s/\.ppu/\.o/; $_ } @ppu;
+        @cmd = (
+          'ld',
+          $Config{dlext} eq 'bundle' ? '-bundle' : '-dylib',
+          '-o' => "libmbFFIPlatypusPascal.$Config{dlext}",
+          @obj,
+        );
+      }
+      else
+      {
+        @cmd = (
+          $ppumove,
+          @linker_flags,
+          @{ $self->ffi_pascal_extra_linker_flags },
+          -o => 'mbFFIPlatypusPascal',
+          -e => 'ppl',
+          @ppu,
+        );
+      }
+      print "@cmd\n";
+      system @cmd;
+      exit 2 if $?;
     }
 
-    print "@cmd\n";
-    system @cmd;
-    exit 2 if $?;
   };
   
   print "cd $CWD\n";
   
-  my($from) = bsd_glob("$src_dir/*mbFFIPlatypusPascal*");
+  my($from) = bsd_glob("$src_dir/*.$Config{dlext}");
   
   unless(defined $from)
   {

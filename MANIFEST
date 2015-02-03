@@ -3,12 +3,15 @@ Changes
 CONTRIBUTING
 examples/add.pas
 examples/add.pl
+examples/mylib.pas
+examples/mylib.pl
 inc/My/ModuleBuild.pm
 inc/run/readme.pl
 INSTALL
 lib/FFI/Platypus/Lang/Pascal.pm
 lib/Module/Build/FFI/Pascal.pm
-libtest/add.pas
+libtest/myunit.pas
+libtest/test.pas
 LICENSE
 MANIFEST			This list of files
 META.json

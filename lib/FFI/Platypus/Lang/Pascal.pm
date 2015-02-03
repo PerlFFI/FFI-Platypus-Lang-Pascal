@@ -107,7 +107,6 @@ sub mangler
           $c_symbol =~ s{^_}{};
           return if $c_symbol =~ /^THREADVARLIST_/;
           return unless $c_symbol =~ /^[A-Z0-9_]+(\$[A-Z0-9_]+)*(\$\$[A-Z0-9_]+)?$/;
-          print "c_symbol = $c_symbol\n";
           my $symbol = $c_symbol;
           my $ret = '';
           $ret = $1 if $symbol =~ s/\$\$([A-Z_]+)$//;
@@ -119,10 +118,7 @@ sub mangler
       } ],
     );
   }
-  
-  use YAML ();
-  print YAML::Dump(\%mangle);
-  
+
   sub {
     my $symbol = $_[0];
 
