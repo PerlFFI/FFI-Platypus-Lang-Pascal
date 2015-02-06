@@ -17,12 +17,12 @@ use File::Which qw( which );
 unless(which('fpc'))
 {
   print "Unable to find Free Pascal.  Please make sure it is in the PATH.\n";
-  print "You should still be able to use pre-compiled C++ dynamic libs.\n";
+  print "You should still be able to use pre-compiled Free Pascal dynamic libs.\n";
 }
 
 my $builder = My::ModuleBuild->new(
   module_name   => 'FFI::Platypus::Lang::Pascal',
-  dist_abstract => 'Documentation and tools for using Platypus with the C++ '.
+  dist_abstract => 'Documentation and tools for using Platypus with the Free Pascal '.
                    'programming language',
   dist_author   => [ 'Graham Ollis <plicease@cpan.org>' ],
   license       => 'perl',

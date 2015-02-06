@@ -1,10 +1,10 @@
 {
-   "abstract" : "Documentation and tools for using Platypus with the C++ programming language",
+   "abstract" : "Documentation and tools for using Platypus with the Free Pascal programming language",
    "author" : [
       "Graham Ollis <plicease@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.421",
+   "generated_by" : "Module::Build version 0.4211",
    "license" : [
       "perl_5"
    ],
