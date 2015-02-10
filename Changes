@@ -1,4 +1,4 @@
-Revision history for Perl module FFI::Platypus::Lang::CPP
+Revision history for Perl module FFI::Platypus::Lang::Pascal
 
 0.02  Feb 3, 2015
   - Fix for OS X and its addition to multiple extensions for dynamic libraries
