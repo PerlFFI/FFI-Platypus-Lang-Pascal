@@ -17,7 +17,7 @@ Module::Build::FFI::Pascal - Build Perl extensions in Free Pascal with FFI
 
 =head1 DESCRIPTION
 
-L<Module::Build::FFI> variant for writing Perl extensions in Pascal wiht 
+L<Module::Build::FFI> variant for writing Perl extensions in Pascal with
 FFI (sans XS).
 
 =head1 BASE CLASS

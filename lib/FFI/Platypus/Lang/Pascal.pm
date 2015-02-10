@@ -336,10 +336,7 @@ improve things.
 If you have implemented a new feature or fixed a bug then you may make a 
 pull reequest on this project's GitHub repository:
 
-L<https://github.com/plicease/FFI-Platypus-Lang-Pascal/issues>
-
-Caution: if you do this too frequently I may nominate you as the new 
-maintainer.  Extreme caution: if you like that sort of thing.
+L<https://github.com/plicease/FFI-Platypus-Lang-Pascal/pulls>
 
 =head1 SEE ALSO
 
