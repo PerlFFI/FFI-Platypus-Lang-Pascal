@@ -4,7 +4,7 @@
       "Graham Ollis <plicease@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4211",
+   "generated_by" : "Module::Build version 0.421",
    "license" : [
       "perl_5"
    ],
@@ -55,7 +55,7 @@
    "provides" : {
       "FFI::Platypus::Lang::Pascal" : {
          "file" : "lib/FFI/Platypus/Lang/Pascal.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       },
       "Module::Build::FFI::Pascal" : {
          "file" : "lib/Module/Build/FFI/Pascal.pm",
@@ -74,5 +74,5 @@
          "url" : "http://github.com/plicease/FFI-Platypus-Lang-Pascal"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
