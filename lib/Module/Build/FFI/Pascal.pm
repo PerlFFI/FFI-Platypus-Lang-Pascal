@@ -9,7 +9,7 @@ use File::chdir;
 use File::Copy qw( move );
 use base qw( Module::Build::FFI );
 
-our $VERSION = '0.02';
+our $VERSION = '0.04';
 
 =head1 NAME
 

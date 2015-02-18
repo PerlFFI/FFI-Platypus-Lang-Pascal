@@ -1,5 +1,8 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+0.04  Feb 17, 2015
+  - Fixed inconsistent versions from previous release
+
 0.03  Feb 15, 2015
   - Meta and documentation tweaks
 
