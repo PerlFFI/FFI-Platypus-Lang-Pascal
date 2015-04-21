@@ -1,5 +1,9 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+  - Allow ; to separate types on the parameter list for unmangeled names
+    which is the norm for Pascal. (gh#6)
+  - Continue to allow , to separate types as well for backward compatability
+
 0.04  Feb 17, 2015
   - Fixed inconsistent versions from previous release
 

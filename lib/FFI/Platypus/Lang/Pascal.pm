@@ -267,14 +267,14 @@ sub mangler
     if($symbol =~ /^(.+)\((.*)\)$/)
     {
       my $name = uc $1;
-      my @args = map { uc $_ } split ',', $2;
+      my @args = map { uc $_ } split /;|,/, $2;
       $name =~ s{\.}{_};
       return join '$', $name, @args;
     }
     elsif($symbol =~ /^(.+)\((.*)\):(.*)$/)
     {
       my $name = uc $1;
-      my @args = map { uc $_ } split ',', $2;
+      my @args = map { uc $_ } split /;|,/, $2;
       my $ret = uc $3;
       $name =~ s{\.}{_};
       return join '$', $name, @args, "\$$ret";

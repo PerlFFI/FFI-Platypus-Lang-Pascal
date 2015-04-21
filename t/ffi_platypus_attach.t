@@ -21,7 +21,7 @@ subtest lib => sub {
 
 subtest unit => sub {
   plan skip_all => 'not the best way to do it';
-  $ffi->attach( ['Add.Add(SmallInt,SmallInt):SmallInt'=>'add'] => ['Integer', 'Integer'] => 'Integer');
+  $ffi->attach( ['Add.Add(SmallInt;SmallInt):SmallInt'=>'add'] => ['Integer', 'Integer'] => 'Integer');
 
   is add(1,2), 3, 'add(1,2) = 3';
 
