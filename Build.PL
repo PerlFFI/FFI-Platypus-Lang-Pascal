@@ -54,6 +54,7 @@ my $builder = My::ModuleBuild->new(
     resources  => {
       repository => "http://github.com/plicease/FFI-Platypus-Lang-Pascal",
       bugtracker => "http://github.com/plicease/FFI-Platypus-Lang-Pascal/issues",
+      x_IRC => "irc://irc.perl.org/#native",
     },
     no_index => {
       directory => [ 'examples' ],
