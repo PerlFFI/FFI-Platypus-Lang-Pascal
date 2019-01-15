@@ -4,13 +4,13 @@
       "Graham Ollis <plicease@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4211",
+   "generated_by" : "Module::Build version 0.4224",
    "license" : [
       "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "version" : 2
    },
    "name" : "FFI-Platypus-Lang-Pascal",
    "no_index" : {
@@ -65,14 +65,16 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://github.com/plicease/FFI-Platypus-Lang-Pascal/issues"
+         "web" : "http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues"
       },
       "license" : [
          "http://dev.perl.org/licenses/"
       ],
       "repository" : {
-         "url" : "http://github.com/plicease/FFI-Platypus-Lang-Pascal"
-      }
+         "url" : "http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal"
+      },
+      "x_IRC" : "irc://irc.perl.org/#native"
    },
-   "version" : "0.05"
+   "version" : "0.05",
+   "x_serialization_backend" : "JSON::PP version 2.97001"
 }

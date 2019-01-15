@@ -16,7 +16,7 @@ configure_requires:
   Module::Build: '0.38'
   Module::Build::FFI: '0.19'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4211, CPAN::Meta::Converter version 2.150001'
+generated_by: 'Module::Build version 0.4224, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -39,7 +39,9 @@ requires:
   File::chdir: '0'
   perl: '5.008001'
 resources:
-  bugtracker: http://github.com/plicease/FFI-Platypus-Lang-Pascal/issues
+  IRC: irc://irc.perl.org/#native
+  bugtracker: http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues
   license: http://dev.perl.org/licenses/
-  repository: http://github.com/plicease/FFI-Platypus-Lang-Pascal
+  repository: http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal
 version: '0.05'
+x_serialization_backend: 'CPAN::Meta::YAML version 0.018'

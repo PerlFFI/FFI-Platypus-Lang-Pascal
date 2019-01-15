@@ -262,14 +262,14 @@ If something does not work as advertised, or the way that you think it
 should, or if you have a feature request, please open an issue on this
 project's GitHub issue tracker:
 
-L<https://github.com/plicease/FFI-Platypus-Lang-Pascal/issues>
+L<https://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues>
 
 =head1 CONTRIBUTING
 
 If you have implemented a new feature or fixed a bug then you may make a
 pull reequest on this project's GitHub repository:
 
-L<https://github.com/plicease/FFI-Platypus-Lang-Pascal/issues>
+L<https://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues>
 
 Caution: if you do this too frequently I may nominate you as the new
 maintainer.  Extreme caution: if you like that sort of thing.
