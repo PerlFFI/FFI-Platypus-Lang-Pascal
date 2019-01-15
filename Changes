@@ -1,5 +1,6 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+0.06 2019-01-14 20:19:35 -0500
   - Move Module::Build::FFI::Pascal to Module-Build-FFI
 
 0.05  Apr 21, 2015
