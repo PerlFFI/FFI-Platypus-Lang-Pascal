@@ -14,6 +14,7 @@ libtest/myunit.pas
 libtest/test.pas
 LICENSE
 maint/cip-before-install
+maint/releaseprep
 MANIFEST			This list of files
 META.json
 META.yml
