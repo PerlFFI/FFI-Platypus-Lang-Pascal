@@ -1,3 +1,4 @@
+.travis.yml
 Build.PL
 Changes
 CONTRIBUTING
@@ -13,6 +14,7 @@ lib/Module/Build/FFI/Pascal.pm
 libtest/myunit.pas
 libtest/test.pas
 LICENSE
+maint/cip-before-install
 MANIFEST			This list of files
 META.json
 META.yml
