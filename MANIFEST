@@ -10,7 +10,6 @@ inc/My/ModuleBuild.pm
 inc/run/readme.pl
 INSTALL
 lib/FFI/Platypus/Lang/Pascal.pm
-lib/Module/Build/FFI/Pascal.pm
 libtest/myunit.pas
 libtest/test.pas
 LICENSE

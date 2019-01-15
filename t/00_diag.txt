@@ -1,6 +1,5 @@
 Alien::Base
 Alien::FFI
-Config::AutoConf
 ExtUtils::CBuilder
 FFI::CheckLib
 JSON::PP
@@ -8,4 +7,5 @@ Module::Build
 PkgConfig
 Test::More
 FFI::Platypus
+Module::Build::FFI
 File::Which
