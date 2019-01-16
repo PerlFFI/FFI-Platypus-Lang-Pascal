@@ -7,7 +7,7 @@ BEGIN {
   my %missing = map {
     eval qq{ require $_ };
     $@ ? ($_=>1) : ()
-  } qw( Env ExtUtils::CBuilder File::Spec Carp );
+  } qw( Env File::Spec Carp );
   if(%missing)
   {
     print "Your Perl is missing core modules: @{[ sort keys %missing ]}\n";
@@ -30,7 +30,6 @@ use lib 'inc';
 use lib 'lib';
 use My::ModuleBuild;
 use Env qw( @PATH );
-use ExtUtils::CBuilder;
 use File::Spec;
 use File::Which qw( which );
 
