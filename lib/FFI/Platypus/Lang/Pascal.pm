@@ -187,7 +187,7 @@ Platypus are documented here.
  my $hashref = FFI::Platypus::Lang::Pascal->native_type_map;
 
 This returns a hash reference containing the native aliases for the
-Free Pascal programming languages.  That is the keys are native C++
+Free Pascal programming languages.  That is the keys are native Pascal
 types and the values are libffi native types.
 
 Types are in camel case.  For example use C<ShortInt>, not C<Shortint>
@@ -233,7 +233,7 @@ sub native_type_map
  # prints ADD_ADD$SMALLINT$SMALLINT$$SMALLINT
  print $mangler->("add(smallint,smallint):smallint");
 
-Returns a subroutine reference that will "mangle" C++ names.
+Returns a subroutine reference that will "mangle" Pascal names.
 
 =cut
 
