@@ -1,6 +1,26 @@
 BEGIN {
-  unless(eval q{ use 5.008001; 1 }) {
+  unless(eval q{ use 5.008001; 1 })
+  {
     print "Perl 5.008001 or better required\n";
+    exit;
+  }
+  my %missing = map {
+    eval qq{ require $_ };
+    $@ ? ($_=>1) : ()
+  } qw( Env ExtUtils::CBuilder File::Spec Carp );
+  if(%missing)
+  {
+    print "Your Perl is missing core modules: @{[ sort keys %missing ]}\n";
+    print "\n";
+    print "Ideally if you are using the system Perl you can install the appropriate\n";
+    print "package which includes the core Perl modules.  On at least some versions\n";
+    print "of Fedora Linux, for example, this is the `perl-core` package.\n";
+    print "\n";
+    print " \% dnf install perl-core\n";
+    print "\n";
+    print "If you really want to install core modules from CPAN, then you can use cpanm:\n";
+    print "\n";
+    print " \% cpanm @{[ sort keys %missing ]}\n";
     exit;
   }
 }
