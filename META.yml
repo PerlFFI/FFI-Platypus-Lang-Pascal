@@ -8,13 +8,14 @@ build_requires:
   Module::Build: '0.38'
   Module::Build::FFI: '0.19'
   Module::Build::FFI::Pascal: '0.49'
+  Test::More: '0.98'
 configure_requires:
   File::Which: '0'
   Module::Build: '0.38'
   Module::Build::FFI: '0.19'
   Module::Build::FFI::Pascal: '0.49'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4224, CPAN::Meta::Converter version 2.150010'
+generated_by: 'Module::Build version 0.4231, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -33,8 +34,8 @@ requires:
   perl: '5.008001'
 resources:
   IRC: irc://irc.perl.org/#native
-  bugtracker: http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues
+  bugtracker: http://github.com/PerlFFI/FFI-Platypus-Lang-Pascal/issues
   license: http://dev.perl.org/licenses/
-  repository: http://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal
+  repository: http://github.com/PerlFFI/FFI-Platypus-Lang-Pascal
 version: '0.06'
 x_serialization_backend: 'CPAN::Meta::YAML version 0.018'

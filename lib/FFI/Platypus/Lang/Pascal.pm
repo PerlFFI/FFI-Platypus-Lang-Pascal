@@ -314,7 +314,7 @@ If something does not work as advertised, or the way that you think it
 should, or if you have a feature request, please open an issue on this 
 project's GitHub issue tracker:
 
-L<https://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/issues>
+L<https://github.com/PerlFFI/FFI-Platypus-Lang-Pascal/issues>
 
 This project's GitHub issue tracker listed above is not Write-Only.  If
 you want to contribute then feel free to browse through the existing
@@ -336,7 +336,7 @@ improve things.
 If you have implemented a new feature or fixed a bug then you may make a 
 pull reequest on this project's GitHub repository:
 
-L<https://github.com/Perl5-FFI/FFI-Platypus-Lang-Pascal/pulls>
+L<https://github.com/PerlFFI/FFI-Platypus-Lang-Pascal/pulls>
 
 =head1 SEE ALSO
 
