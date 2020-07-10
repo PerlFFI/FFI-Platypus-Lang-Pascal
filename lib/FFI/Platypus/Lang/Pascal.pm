@@ -346,7 +346,7 @@ L<https://github.com/PerlFFI/FFI-Platypus-Lang-Pascal/pulls>
 
 The Core Platypus documentation.
 
-=item L<Module::Build::FFI::Pascal>
+=item L<FFI::Build> + L<FFI::Build::File::Pascal>
 
 Bundle Free Pascal with your FFI / Perl extension.
 

@@ -11,16 +11,52 @@ use File::chdir;
 use FFI::CheckLib qw( find_lib_or_die );
 use File::Copy qw( copy );
 
-# ABSTRACT:
-# VERSION
+our $VERSION = '0.06';
+
+=head1 NAME
+
+FFI::Build::FIle::Pascal - Build Pascal library using the FFI::Build system
 
 =head1 SYNOPSIS
 
+In your .fbx file:
+
+ use strict;
+ use warnings;
+ our $DIR;
+ {
+   source  => ["$DIR/test.pas"],
+   verbose => 2,
+ }
+
 =head1 DESCRIPTION
+
+This class provides the necessary machinery for building Pascal files as
+part of the L<FFI::Build> system using the Free Pascal compiler.  The
+source file should be a Free Pascal library.  Only the library C<.pas>
+file should be specified.  You can use other Units, but because the
+Free Pascal Compiler automatically handles dependencies you do not
+need to specify them.
+
+=head1 BASE CLASS
+
+L<FFI::Build::File::Base>
 
 =head1 CONSTRUCTOR
 
 =head2 new
+
+ my $file = FFI::Build::File::Pascal->new($content, %opt);
+
+In addition to the normal options, this class accepts:
+
+=over 4
+
+=item C<fpc_flags>
+
+The Free Pascal compiler flags to use when building the library.
+
+=back
 
 =cut
 
@@ -52,11 +88,10 @@ sub new
   $self;
 }
 
-=head1 METHODS
-
-=head2 build_item
-
-=cut
+sub build_all
+{
+  shift->build_item;
+}
 
 sub build_item
 {
@@ -64,7 +99,7 @@ sub build_item
 
   my $pas = Path::Tiny->new($self->path);
 
-  local $CWD = $self->path->parent;
+  local $CWD = Path::Tiny->new($self->path)->parent;
   print "+cd $CWD\n";
 
   my @cmd = ($self->fpc, $self->fpc_flags, $pas->basename);
@@ -107,10 +142,6 @@ sub build_item
   }
 }
 
-=head2 fpc
-
-=cut
-
 sub fpc
 {
   my $fpc = File::Which::which('fpc');
@@ -118,37 +149,21 @@ sub fpc
   $fpc;
 }
 
-=head2 fpc_flags
-
-=cut
-
 sub fpc_flags
 {
   my($self) = @_;
   @{ $self->{fpc_flags} };
 }
 
-=head2 default_suffix
-
-=cut
-
 sub default_suffix
 {
   return '.pas';
 }
 
-=head2 default_encoding
-
-=cut
-
 sub default_encoding
 {
   return ':utf8';
 }
-
-=head2 accept_suffix
-
-=cut
 
 sub accept_suffix
 {
@@ -156,3 +171,31 @@ sub accept_suffix
 }
 
 1;
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<FFI::Platypus>
+
+The Core Platypus documentation.
+
+=item L<FFI::Platypus::Lang::Pascal>
+
+Pascal language plugin for L<FFI::Platypus>.
+
+=back
+
+=head1 AUTHOR
+
+Graham Ollis E<lt>plicease@cpan.orgE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2015 by Graham Ollis.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
