@@ -55,16 +55,18 @@ my $builder = My::ModuleBuild->new(
     'Module::Build'      => 0.38,
     'Module::Build::FFI' => 0.19,
     'Module::Build::FFI::Pascal' => 0.49,
-    'File::Which' => 0,
   },
   test_requires => {
-    'FFI::CheckLib' => 0,
     'Test2::V0' => 0,
   },
   requires => {
     'perl',               => '5.008001',
     'FFI::Platypus'       => '0.19',
     'FFI::ExtractSymbols' => 0,
+    'File::Which'         => 0,
+    'Path::Tiny'          => 0,
+    'File::chdir'         => 0,
+    'FFI::CheckLib' => 0,
   },
   meta_merge => {
     resources  => {
