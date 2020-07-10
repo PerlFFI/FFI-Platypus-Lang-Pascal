@@ -11,7 +11,7 @@ use File::chdir;
 use FFI::CheckLib qw( find_lib_or_die );
 use File::Copy qw( copy );
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 NAME
 
