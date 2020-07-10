@@ -87,3 +87,5 @@
 \.dylib$
 \.ppu$
 \.ppl$
+
+^fbx\.json$
