@@ -32,7 +32,8 @@ my %WriteMakefileArgs = (
   CONFIGURE_REQUIRES => {
     'ExtUtils::MakeMaker' => '6.64',
     'FFI::Build::MM' => 1.00,
-    'File::Which' => 0,
+    'File::Which'    => 0,
+    'Path::Tiny'     => 0,
   },
   BUILD_REQUIRES => {
     # ...
@@ -47,7 +48,7 @@ my %WriteMakefileArgs = (
     'File::Which'         => 0,
     'Path::Tiny'          => 0,
     'File::chdir'         => 0,
-    'FFI::CheckLib' => 0,
+    'FFI::CheckLib'       => 0,
   },
   META_MERGE => {
     'meta-spec' => { version => 2 },
