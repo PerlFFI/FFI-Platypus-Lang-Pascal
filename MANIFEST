@@ -20,12 +20,9 @@ META.json
 META.yml
 README
 SUPPORT
-t/00_diag.t
-t/00_diag.txt
-t/01_use.t
-t/02_types.t
 t/ffi/myunit.pas
 t/ffi/test.pas
 t/ffi_build_file_pascal.t
 t/ffi_platypus_attach.t
 t/lang.t
+t/types.t

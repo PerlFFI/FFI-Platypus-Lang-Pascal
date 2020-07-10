@@ -1,6 +1,4 @@
-use strict;
-use warnings;
-use Test::More tests => 1;
+use Test2::V0 -no_srand => 1;
 use FFI::Platypus::Lang::Pascal;
 
 my $types = FFI::Platypus::Lang::Pascal->native_type_map;
@@ -11,3 +9,5 @@ foreach my $cpp_type (sort keys %$types)
 }
 
 pass 'okay';
+
+done_testing;
