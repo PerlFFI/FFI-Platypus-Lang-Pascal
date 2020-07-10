@@ -1,9 +1,0 @@
-[package]
-name=foo
-version=0.0.0
-
-[target]
-units=myunit test
-
-[clean]
-files=libtest.so Makefile
