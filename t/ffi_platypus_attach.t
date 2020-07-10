@@ -4,7 +4,7 @@ use Test::More 0.98;
 use FFI::CheckLib qw( find_lib );
 use FFI::Platypus;
 
-my $libtest = find_lib lib => 'test', libpath => 'libtest';
+my $libtest = find_lib lib => 'test', libpath => 't/ffi';
 plan skip_all => 'test requires Free Pascal'
   unless $libtest;
 
