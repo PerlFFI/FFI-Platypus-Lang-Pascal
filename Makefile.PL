@@ -34,6 +34,7 @@ my %WriteMakefileArgs = (
     'FFI::Build::MM' => 1.00,
     'File::Which'    => 0,
     'Path::Tiny'     => 0,
+    'File::chdir'    => 0,
   },
   BUILD_REQUIRES => {
     # ...

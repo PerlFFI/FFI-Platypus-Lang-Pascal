@@ -1,5 +1,8 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+  - Added File::chdir as a configure prereq
+    (this was used, but undeclared in the previous two releases)
+
 0.08 2020-07-10 18:22:20 -0600
   - Added Path::Tiny as a configure / runtime prereq
     (this was used, but undeclared in the previous release)
