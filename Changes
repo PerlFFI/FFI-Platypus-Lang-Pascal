@@ -1,5 +1,6 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+0.09 2020-07-12 09:29:33 -0600
   - Added File::chdir as a configure prereq
     (this was used, but undeclared in the previous two releases)
 
