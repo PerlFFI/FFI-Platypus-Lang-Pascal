@@ -105,7 +105,7 @@ sub build_item
   my @cmd = ($self->fpc, $self->fpc_flags, $pas->basename);
   print "+@cmd\n";
   system @cmd;
-  exit 2 if $?;
+  die "error compiling or linking Pascal" if $?;
 
   my($dl) = find_lib_or_die(
     lib => '*',
