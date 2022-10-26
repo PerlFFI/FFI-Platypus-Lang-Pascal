@@ -1,5 +1,9 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+  - Fix bug where FFI::Build::File::Pascal would sometimes
+    exit on failure instead of die, which would throw away
+    any diagnostics when running in dev / prove mode (gh#21)
+
 0.09 2020-07-12 09:29:33 -0600
   - Added File::chdir as a configure prereq
     (this was used, but undeclared in the previous two releases)
