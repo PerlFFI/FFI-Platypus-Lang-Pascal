@@ -1,5 +1,6 @@
 Revision history for Perl module FFI::Platypus::Lang::Pascal
 
+0.10 2022-10-26 05:58:37 -0600
   - Fix bug where FFI::Build::File::Pascal would sometimes
     exit on failure instead of die, which would throw away
     any diagnostics when running in dev / prove mode (gh#21)
