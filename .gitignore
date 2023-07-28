@@ -6,6 +6,9 @@
 /_build
 /blib
 /FFI-Platypus-Lang-Pascal-*
+/examples/*.so
+/examples/*.dll
+/examples/*.o
 *.o
 *.dll
 *.so
@@ -14,3 +17,4 @@
 *.bundle
 *.dylib
 *.swp
+
